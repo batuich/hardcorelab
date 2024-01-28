@@ -1,0 +1,1527 @@
+@use "sass:math";
+
+$mobileBP: 576px;
+@mixin mobile-breakpoint {@media only screen and (max-width: $mobileBP){@content}}
+
+$color-fill-black:#161616;
+$color-fill-gray:#F6F6F6;
+$color-fill-block: #2A2A2B;
+$color-text-gray:#707477;
+$font-text:'Inter';
+$font-header:'Tektur';
+
+%decor-rect-style {
+	border: solid 1px #707477;
+}
+%before-coner{
+	content: "";
+	border-bottom: 1.3513513514vw solid $color-fill-block;
+	border-left: 1.3513513514vw solid transparent;
+	transform: rotate(180deg);
+	position: absolute;
+	bottom: -1.3513513514vw;
+	right:0;
+	@include mobile-breakpoint{
+		border-bottom: 4.6875vw solid $color-fill-block;
+		border-left: 4.6875vw solid transparent;
+		transform: rotate(180deg);
+		bottom: -4.6875vw;
+	}
+}
+%after-coner{
+	content: "";
+	width: calc(100% - 1.33vw);
+	height: 1.3513513514vw;
+	background: $color-fill-block;
+	position: absolute;
+	bottom: -1.3513513514vw;
+	left:0;
+	@include mobile-breakpoint{
+		width: calc(100% - 4.6875vw);
+		height: 4.6875vw;
+		background: $color-fill-block;
+		position: absolute;
+		bottom: -4.6875vw;
+	}
+}
+%text{
+	font-size: math.div(20, 1480) * 100 * 1vw;
+	line-height: math.div(30, 1480) * 100 * 1vw;
+	@include mobile-breakpoint{
+		font-size: math.div(12, 320) * 100 * 1vw;
+		line-height: math.div(18, 320) * 100 * 1vw;
+	}
+}
+%title{
+	color: $color-fill-gray;
+	font-family: $font-header;
+	font-weight: 400;
+	font-size: math.div(40, 1480) * 100 * 1vw;
+	line-height: math.div(60, 1480) * 100 * 1vw;
+}
+%border-bottom{
+	border-bottom: 2px solid rgb(#707477,0.15);
+}
+%content-padding{
+	padding: math.div(100, 1480) * 100 * 1vw 
+	math.div(342, 1480) * 100 * 1vw
+	math.div(280, 1480) * 100 * 1vw
+	math.div(339, 1480) * 100 * 1vw;
+	@include mobile-breakpoint{
+		padding: math.div(27, 320) * 100 * 1vw 
+		math.div(20, 320) * 100 * 1vw 
+		math.div(30, 320) * 100 * 1vw 
+		math.div(39, 320) * 100 * 1vw;
+	}
+}
+%mobile-header{
+	display: none;
+	@include mobile-breakpoint{
+		display: block;
+		box-sizing: border-box;
+		font-family: $font-header;
+		font-weight: 400;
+		width: 100%;
+		text-align: center;	
+		font-size: math.div(16, 320) * 100 * 1vw;
+		line-height: math.div(30, 320) * 100 * 1vw;
+		padding-right: math.div(20, 320) * 100 * 1vw;
+		margin-bottom: math.div(20, 320) * 100 * 1vw;
+	}
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+	scroll-behavior: smooth;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow-x: hidden;
+}
+
+body{
+    background-color: $color-fill-black;
+    color: #FFF;
+		font-family: $font-text;
+		font-weight: 300;
+		width: 100%;
+		height: 100%;
+		margin: 0px;
+		padding: 0px;
+		overflow-x: hidden;
+}
+
+a{
+	color: #FFF;
+}
+
+.bold{
+	font-weight: 700;
+}
+
+.hide{
+	opacity: 0;
+}
+
+.main-container{
+	width: 100%;
+}
+
+.decor-rect-20{
+	@extend %decor-rect-style;
+	position: absolute;
+	width: math.div(20, 1480) * 100 * 1vw;
+	height: math.div(20, 1480) * 100 * 1vw;
+	@include mobile-breakpoint{
+		width: math.div(18, 320) * 100 * 1vw;
+		height: math.div(18, 320) * 100 * 1vw;
+	}
+}
+.decor-rect-40{
+	@extend %decor-rect-style;
+	position: absolute;
+	width: math.div(40, 1480) * 100 * 1vw;
+	height: math.div(20, 1480) * 100 * 1vw;
+}
+
+.decor-rect-160{
+	@extend %decor-rect-style;
+	position: absolute;
+	width: math.div(160, 1480) * 100 * 1vw;
+	height: math.div(20, 1480) * 100 * 1vw;
+}
+.back-lines{
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background: 3.9865vw repeat-y url("../img/backline-x2.png"),
+							14.7973vw repeat-y url("../img/backline-x2.png"),
+							22.9054vw repeat-y url("../img/backline-x2.png"),
+							75.8108vw repeat-y url("../img/backline-x2.png"),
+							83.9189vw repeat-y url("../img/backline-x2.png"),
+							94.7297vw repeat-y url("../img/backline-x2.png");
+	@include mobile-breakpoint{
+		width: 100vw;
+		height: 100%;
+		background: math.div(20, 320) * 100 * 1vw repeat-y url("../img/backline-x1.png"),
+								math.div(39, 320) * 100 * 1vw repeat-y url("../img/backline-x1.png"),
+								math.div(280, 320) * 100 * 1vw repeat-y url("../img/backline-x1.png"),
+								math.div(299, 320) * 100 * 1vw repeat-y url("../img/backline-x1.png");
+	}
+}
+.on-top-logo{
+	z-index: 10;
+	position: fixed;
+	left: 3.9865vw;
+	top:50%;
+	transform: translate(0, -50%);
+	img{
+		width: 5.4054vw;
+	}
+	@include mobile-breakpoint{
+		display: none;
+	}
+}
+.decor-rect-1{
+	z-index: 10;
+	position: fixed;
+	left: 3.9865vw;
+	bottom: 3.9865vw;
+	@include mobile-breakpoint{
+		display: none;
+	}
+}
+.on-top-contact-us{
+	z-index: 10;
+	position: fixed;
+	left: 83.9189vw;
+	top: 7.0732vh;
+	font-size: math.div(16, 1480) * 100 * 1vw;
+	line-height: 1.3514vw;
+	@include mobile-breakpoint{
+		display: none;
+	}
+}
+.on-top-menu{
+	z-index: 10;
+	position: fixed;
+	top: 7.0732vh;
+	left: 3.9865vw;
+	font-size: math.div(16, 1480) * 100 * 1vw;
+	line-height: 1.3514vw;
+	a{
+		text-decoration: none;
+	}
+	ul{
+		position: relative;
+		list-style: none;
+		li{
+			position: relative;
+			width: math.div(161, 1480) * 100 * 1vw;
+		text-align: left;
+			padding-bottom: math.div(15, 1480) * 100 * 1vw;
+		}
+		.act{
+			text-align: right;
+		}
+		@include mobile-breakpoint{
+			display: none;
+		}
+	}
+	.menu-border{
+		@extend %decor-rect-style;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		@include mobile-breakpoint{
+			display: none;
+		}
+	}
+}
+.on-top-menu-mob{
+	position: fixed;
+	display: none;
+	z-index: 10;
+	@include mobile-breakpoint{
+		display: flex;
+		align-items: center;
+		gap: math.div(10, 320) * 100 * 1vw;
+		top: math.div(30, 320) * 100 * 1vw;
+		left: math.div(20, 320) * 100 * 1vw;
+		height: math.div(21, 320) * 100 * 1vw;
+		font-size: math.div(12, 320) * 100 * 1vw;
+		button{
+			flex-shrink: 0;
+			width: math.div(20, 320) * 100 * 1vw;
+			height: math.div(21, 320) * 100 * 1vw;
+			border: none;
+			background: center / contain no-repeat url("../img/icon-mob-menu.svg");
+		}
+		p{
+			flex-shrink: 0;
+		}
+	}
+}
+
+.on-top-contact-mob{
+	position: fixed;
+	display: none;
+	z-index: 10;
+	@include mobile-breakpoint{
+		display: flex;
+		align-items: center;
+		gap: math.div(10, 320) * 100 * 1vw;
+		top: math.div(30, 320) * 100 * 1vw;
+		right: math.div(20, 320) * 100 * 1vw;
+		height: math.div(21, 320) * 100 * 1vw;
+		font-size: math.div(12, 320) * 100 * 1vw;
+		button{
+			flex-shrink: 0;
+			width: math.div(20, 320) * 100 * 1vw;
+			height: math.div(21, 320) * 100 * 1vw;
+			border: none;
+			background: center / contain no-repeat url("../img/icon-mob-contact.svg");
+		}
+		p{
+			flex-shrink: 0;
+		}
+	}
+}
+.menu-mob{
+	display: none;
+	@include mobile-breakpoint{
+		display: block;
+		opacity: 0;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 20;
+		width: 100%;
+		background-color: $color-fill-block;
+		ul{
+			list-style-type: none;
+		}
+		li{
+			font-size: math.div(16, 320) * 100 * 1vw;
+			padding: math.div(10, 320) * 100 * 1vw math.div(20, 320) * 100 * 1vw;
+			border-bottom: 1px rgb($color-text-gray,0.2) solid;
+			a{
+				text-decoration: none;
+			}
+		}
+		li:nth-last-child(1){
+			border-bottom: none;
+		}
+		button{
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: math.div(40, 320) * 100 * 1vw;
+			height: math.div(40, 320) * 100 * 1vw;
+			border: none;
+			background: #707477 center / contain no-repeat url("../img/icon-close.svg");
+		}
+	}
+}
+.start-block{
+	@extend %border-bottom;
+	height: 100vh;
+	position: relative;
+	@include mobile-breakpoint{
+		height: auto;
+	}
+	.start-title{
+		overflow: hidden;
+		position: relative;
+		top: calc( 50% - math.div(60, 1480) * 100 * 1vw );
+		left: math.div(338, 1480) * 100 * 1vw;
+		z-index: 3;
+		@include mobile-breakpoint{
+			height: auto;
+			top: auto;
+			left: auto;
+			padding: math.div(100, 320) * 100 * 1vw
+			math.div(20, 320) * 100 * 1vw
+			math.div(30, 320) * 100 * 1vw
+			math.div(39, 320) * 100 * 1vw;
+		}
+		img{
+			display: none;
+			@include mobile-breakpoint{
+				display: block;
+				width: math.div(60, 320) * 100 * 1vw;
+				height: math.div(60, 320) * 100 * 1vw;
+			}
+		}
+		h1{
+			height: math.div(210, 1480) * 100 * 1vw;
+			color: $color-fill-gray;
+			font-family: $font-header;
+			font-weight: 400;
+			font-size: math.div(56, 1480) * 100 * 1vw;
+			line-height: math.div(70, 1480) * 100 * 1vw;
+			width: math.div(840, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				position: relative;
+				overflow: hidden;
+				font-size: math.div(32, 320) * 100 * 1vw;
+				line-height: math.div(42, 320) * 100 * 1vw;
+				width: auto; top: auto; left: auto;
+				height: math.div(210, 320) * 100 * 1vw;
+				margin-top: math.div(25, 320) * 100 * 1vw;
+			}
+		}
+	}
+	.start-icon{
+		z-index: 3;
+		position: absolute;
+		top: math.div(14, 1480) * 100 * 1vw;
+		left: math.div(904, 1480) * 100 * 1vw;
+		width: math.div(80, 1480) * 100 * 1vw;
+		height: math.div(80, 1480) * 100 * 1vw;
+		background: center / contain no-repeat url("../img/start-icon.svg");
+		@include mobile-breakpoint{
+			position: relative;
+			width: math.div(50, 320) * 100 * 1vw;
+			height: math.div(50, 320) * 100 * 1vw;
+			left: auto;
+			transform: translate(0, 0);
+			bottom: auto;
+			background-image: url("../img/start-icon-mob.svg");
+			margin-top: math.div(40, 320) * 100 * 1vw;
+		}
+	}
+	.decor-rect-2{
+		z-index: 3;
+		left: math.div(339, 1480) * 100 * 1vw;
+		bottom: math.div(59, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			display: none;
+		}
+	}
+	.decor-rect-3{
+		z-index: 3;
+		left: math.div(1242, 1480) * 100 * 1vw;
+		bottom: math.div(59, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			bottom: math.div(30, 320) * 100 * 1vw;
+			left: math.div(261, 320) * 100 * 1vw;
+		}
+	}
+	.start-back-pattern{
+		position: absolute;
+		top:50%;
+		left:50%;
+		transform: translate(-50%, -50%);
+		z-index: 0;
+		@include mobile-breakpoint{
+			top: -(math.div(100, 320) * 100 * 1vw);
+			left: 50%;
+			transform: translate(-50%, 0);
+		}
+		img{
+			width: math.div(1350, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				width: math.div(600, 320) * 100 * 1vw;
+			}
+		}
+	}
+}
+.wedo-block{
+	@extend %border-bottom;
+	position: relative;
+	overflow: visible;
+	.wedo-content{
+		@extend %content-padding;
+		position: relative;
+		z-index: 3;
+		.wedo-header{
+			@extend %mobile-header;
+		}
+		.wedo-title{
+			overflow: hidden;
+			height: math.div(180, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				height: math.div(196, 320) * 100 * 1vw;
+			}
+			h2{
+				@extend %title;
+				position: relative;
+				@include mobile-breakpoint{
+					font-size: math.div(24, 320) * 100 * 1vw;
+					line-height: math.div(32, 320) * 100 * 1vw;
+				}
+			}
+		}
+		.wedo-box{
+			position: relative;
+			width: math.div(440, 1480) * 100 * 1vw;
+			margin-top: math.div(60, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				width: math.div(190, 320) * 100 * 1vw;
+				margin-top: math.div(20, 320) * 100 * 1vw;
+				margin-bottom: math.div(50, 320) * 100 * 1vw;
+			}
+		}
+		p{
+			@extend %text;
+			background-color: $color-fill-block;
+			padding: math.div(30, 1480) * 100 * 1vw math.div(30, 1480) * 100 * 1vw math.div(5, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				padding: math.div(15, 320) * 100 * 1vw math.div(15, 320) * 100 * 1vw math.div(0, 320) * 100 * 1vw;
+			}
+		}
+		p:before{
+			@extend %before-coner;
+		}
+		p:after{
+			@extend %after-coner;
+		}
+		.wedo-icon{
+			z-index: 3;
+			position: absolute;
+			width: math.div(80, 1480) * 100 * 1vw;
+			height: math.div(80, 1480) * 100 * 1vw;
+			top: math.div(130, 1480) * 100 * 1vw;
+			left: math.div((1261-19), 1480) * 100 * 1vw;
+			background: center / contain no-repeat url("../img/wedo-icon.svg");
+			@include mobile-breakpoint{
+				position: relative;
+				width: math.div(50, 320) * 100 * 1vw;
+				height: math.div(50, 320) * 100 * 1vw;
+				top:auto;
+				left: 0;
+				background-image: url("../img/wedo-icon-mob.svg");
+			}
+		}
+	}
+	.wedo-graph{
+		position: absolute;
+		left:math.div(61, 1480) * 100 * 1vw;
+		top:math.div(260, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			left: auto;
+			right:-(math.div(280,320) * 100 * 1vw);
+			top: math.div(30,320) * 100 * 1vw;
+		}
+		img{
+			width: math.div(1360-19, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				width: math.div(1360, 320) * 100 * 1vw;
+			}
+		}
+	}
+	.decor-rect-4{
+		z-index: 3;
+		left: math.div(1259-17, 1480) * 100 * 1vw;
+		bottom: math.div(60, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			bottom: math.div(30, 320) * 100 * 1vw;
+			left: math.div(261, 320) * 100 * 1vw;
+		}
+	}
+}
+.perf-block{
+	@extend %border-bottom;
+	width: 100%;
+	position: relative;
+	.perf-graph{
+		display: none;
+		opacity: 0;
+		position: absolute;
+		z-index: 10;
+		width: math.div(800-15, 1480) * 100 * 1vw;
+		height: math.div(560, 1480) * 100 * 1vw;
+		left: math.div(339, 1480) * 100 * 1vw;
+		top: math.div(180, 1480) * 100 * 1vw;
+		img{
+			position: absolute;
+			top: 0;
+			width: math.div(800-15, 1480) * 100 * 1vw;
+			height: math.div(560, 1480) * 100 * 1vw;
+		}
+		button{
+			position: absolute;
+			width: math.div(40, 1480) * 100 * 1vw;
+			height: math.div(40, 1480) * 100 * 1vw;
+			border: none;
+			background: #707477 center / contain no-repeat url("../img/icon-close.svg");
+			cursor: pointer;
+			top: 0;
+			right: -(math.div(40, 1480) * 100 * 1vw);
+		}
+		button:hover{
+			background: #9B9FA3 center / contain no-repeat url("../img/icon-close.svg");;
+		}
+	}
+	.perf-graph-mob{
+		display: none;
+		@include mobile-breakpoint{
+			position: fixed;
+			display: none;
+			opacity: 0;
+			top: 0;
+			left: -(math.div(320, 320) * 100 * 1vw);
+			background-color: $color-fill-block;
+			width: 100%;
+			height: 100%;
+			z-index: 20;
+			h4{
+				position: relative;
+				font-size: math.div(16, 320) * 100 * 1vw;
+				font-weight: normal;
+				line-height: math.div(20, 320) * 100 * 1vw;
+				color: $color-text-gray;
+				margin-top: math.div(10, 320) * 100 * 1vw;
+				margin-left: math.div(10, 320) * 100 * 1vw;
+			}
+			.line{
+				position: absolute;
+				width: 1px;
+				height: 100%;
+				background-color: $color-text-gray;
+				opacity: 0.2;
+				left: 50%;
+				top: 0;
+			}
+			img{
+				position: absolute;
+				width: 100%;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+			}
+			button{
+				position: absolute;
+				border: none;
+				cursor: pointer;
+				top: 0;
+				right: 0;
+				width: math.div(40, 320) * 100 * 1vw;
+				height: math.div(40, 320) * 100 * 1vw;
+				background: #707477 center / contain no-repeat url("../img/icon-close.svg");
+			}
+		}
+	}
+	.perf-content{
+		@extend %content-padding;
+		position: relative;
+		z-index: 3;
+		box-sizing: border-box;
+		padding-top: math.div(60, 1480) * 100 * 1vw;
+		padding-bottom: math.div(30, 1480) * 100 * 1vw;;
+		@include mobile-breakpoint{
+			padding-top: math.div(27, 320) * 100 * 1vw;
+			padding-bottom: math.div(30, 320) * 100 * 1vw;
+		}
+		.perf-header{
+			@extend %mobile-header;
+		}
+		.perf-title{
+			h3{
+				@extend %title;
+				position: relative;
+				@include mobile-breakpoint{
+					display: none;
+				}
+			}
+		}
+		.perf-numbers{
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: math.div(40, 1480) * 100 * 1vw;
+			margin-top: math.div(40, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				grid-template-columns: 1fr;
+				grid-gap: math.div(30, 320) * 100 * 1vw;
+				margin-top: math.div(20, 320) * 100 * 1vw;
+				margin-right: math.div(20, 320) * 100 * 1vw;
+			}
+			.perf-numbers-item{
+				position: relative;
+				padding: math.div(20, 1480) * 100 * 1vw math.div(40, 1480) * 100 * 1vw math.div(10, 1480) * 100 * 1vw;
+				margin-bottom: math.div(20, 1480) * 100 * 1vw;
+				@include mobile-breakpoint{
+					padding: math.div(12, 320) * 100 * 1vw math.div(15, 320) * 100 * 1vw  math.div(0, 320) * 100 * 1vw;
+				}
+				p.number{
+					overflow: hidden;
+					height: math.div(100, 1480) * 100 * 1vw;
+					font-family: $font-header;
+					font-weight: 400;
+					font-size: math.div(80, 1480) * 100 * 1vw;
+					line-height: math.div(100, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						height: math.div(50, 320) * 100 * 1vw;
+						font-size: math.div(40, 320) * 100 * 1vw;
+						line-height: math.div(50, 320) * 100 * 1vw;
+					}
+				}
+				p.text{
+					@extend %text;
+					@include mobile-breakpoint{
+						margin-top: math.div(2, 320) * 100 * 1vw;
+					}
+				}
+			}
+			.perf-numbers-item:before{
+				@extend %before-coner;
+			}
+			.perf-numbers-item:after{
+				@extend %after-coner;
+			}
+			.perf-numbers-item-back-1{
+				background-color: $color-fill-block;
+				background-repeat: no-repeat;
+				background-image: url("../img/perf-num-back-1.svg");
+				background-size: math.div(120, 1480) * 100 * 1vw;
+				background-position: 
+				(math.div(257, 1480) * 100 * 1vw) 
+				(- math.div(10, 1480) * 100 * 1vw);
+				@include mobile-breakpoint{
+					background-size: math.div(80, 320) * 100 * 1vw;
+					background-position: 
+					(math.div(146, 320) * 100 * 1vw)
+					(- math.div(24, 320) * 100 * 1vw);
+				}
+			}
+			.perf-numbers-item-back-2{
+				background-color: $color-fill-block;
+				background-repeat: no-repeat;
+				background-image: url("../img/perf-num-back-2.svg");
+				background-size: math.div(200, 1480) * 100 * 1vw;
+				background-position:
+				(math.div(200, 1480) * 100 * 1vw)
+				(- math.div(28, 1480) * 100 * 1vw);
+				@include mobile-breakpoint{
+					background-size: math.div(120, 320) * 100 * 1vw;
+					background-position: 
+					(math.div(110, 320) * 100 * 1vw) 
+					(- math.div(20, 320) * 100 * 1vw);
+				}
+			}
+			.perf-numbers-item-back-3{
+				background-color: $color-fill-block;
+				background-repeat: no-repeat;
+				background-image: url("../img/perf-num-back-3.svg");
+				background-size: math.div(160, 1480) * 100 * 1vw;
+				background-position:
+				(math.div(243, 1480) * 100 * 1vw)
+				(- math.div(22, 1480) * 100 * 1vw);
+				@include mobile-breakpoint{
+					background-size: math.div(92, 320) * 100 * 1vw;
+					background-position:
+					(math.div(130, 320) * 100 * 1vw)
+					(- math.div(14, 320) * 100 * 1vw);
+				}
+			}
+			.perf-numbers-item-back-4{
+				background-color: $color-fill-block;
+				background-repeat: no-repeat;
+				background-image: url("../img/perf-num-back-4.svg");
+				background-size: math.div(173, 1480) * 100 * 1vw;
+				background-position: (math.div(216, 1480) * 100 * 1vw) (- math.div(17, 1480) * 100 * 1vw);
+				@include mobile-breakpoint{
+					background-size: math.div(96, 320) * 100 * 1vw;
+					background-position:
+					(math.div(125, 320) * 100 * 1vw)
+					(- math.div(14, 320) * 100 * 1vw);
+				}
+			}
+		}
+		.perf-graph-link{
+			position: relative;
+			display: flex;
+			justify-content: center;
+			margin-top: math.div(40, 1480) * 100 * 1vw;
+			padding-bottom: math.div(60, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				margin-top: math.div(30, 320) * 100 * 1vw;
+				padding-bottom: math.div(30, 320) * 100 * 1vw;
+				width: math.div(140, 320) * 100 * 1vw;
+			}
+			a{
+				@extend %text;
+			}
+			img{
+				margin-bottom: math.div(2, 1480) * 100 * 1vw;
+				margin-left: math.div(15, 1480) * 100 * 1vw;
+				@include mobile-breakpoint{
+					display: none;
+				}
+			}
+		}
+	}
+	.perf-icon{
+		z-index: 3;
+		position: absolute;
+		width: math.div(80, 1480) * 100 * 1vw;
+		height: math.div(80, 1480) * 100 * 1vw;
+		top: math.div(160, 1480) * 100 * 1vw;
+		left: math.div(1242, 1480) * 100 * 1vw;
+		background: center / contain no-repeat url("../img/perf-icon.svg");
+		@include mobile-breakpoint{
+			position: relative;
+			top: 0;
+			left: 0;
+			width: math.div(50, 320) * 100 * 1vw;
+			height: math.div(50, 320) * 100 * 1vw;
+			background-image: url("../img/perf-icon-mob.svg");
+		}
+	}
+	.perf-back-pattern-1{
+		position: absolute;
+		overflow: hidden;
+		top:-(math.div(140, 1480) * 100 * 1vw);
+		right:0;
+		z-index: 0;
+		width: math.div(540, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			width: math.div(205, 320) * 100 * 1vw;
+			top: -(math.div(56, 320) * 100 * 1vw);
+		}
+		img{
+			width: math.div(700, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				width: math.div(350, 320) * 100 * 1vw;
+			}
+		}
+	}
+	.perf-back-pattern-2{
+		position: absolute;
+		top:(math.div(360, 1480) * 100 * 1vw);
+		left:-(math.div(250, 1480) * 100 * 1vw);
+		z-index: 0;
+		@include mobile-breakpoint{
+			top: math.div(240, 320) * 100 * 1vw;
+			left: -(math.div(160,320) * 100 * 1vw);
+		}
+		img{
+			width: math.div(802, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				width: math.div(400, 320) * 100 * 1vw;
+			}
+		}
+	}
+	.decor-rect-5{
+		z-index: 3;
+		left: math.div(1259-17, 1480) * 100 * 1vw;
+		top: math.div(570, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			top: auto;
+			bottom: math.div(30, 320) * 100 * 1vw;
+			left: math.div(261, 320) * 100 * 1vw;
+		}
+	}
+}
+.strat-block{
+	@extend %border-bottom;
+	width: 100%;
+	position: relative;
+	.strat-content{
+		@extend %content-padding;
+		padding-bottom: math.div(100, 1480) * 100 * 1vw;
+		position: relative;
+		z-index: 3;
+		@include mobile-breakpoint{
+			padding-bottom: math.div(30, 320) * 100 * 1vw;
+		}
+		.strat-header{
+			@extend %mobile-header;
+		}
+		.strat-item{
+			position: relative;
+			display: flex;
+			@include mobile-breakpoint{
+				flex-direction: column;
+			}
+			.strat-item-logo{
+				width: math.div(110, 1480) * 100 * 1vw;
+				@include mobile-breakpoint{
+					width: math.div(60, 320) * 100 * 1vw;
+				}
+				img{
+					width: math.div(110, 1480) * 100 * 1vw;
+					margin-top: math.div(35, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(60, 320) * 100 * 1vw;
+						margin-top: 0;
+					}
+				}
+			}
+			.strat-item-text{
+				margin-left: math.div(50, 1480) * 100 * 1vw;
+				@include mobile-breakpoint{
+					margin-left: 0;
+					margin-top: math.div(15, 320) * 100 * 1vw;
+				}
+				p{
+					@extend %text;
+					margin-top: math.div(15, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						margin-top: math.div(10, 320) * 100 * 1vw;
+					}
+				}
+				h4{
+					color:$color-text-gray;
+					font-weight: 700;
+					font-size: math.div(14, 1480) * 100 * 1vw;
+					line-height: math.div(16, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						font-size: math.div(10, 320) * 100 * 1vw;
+						line-height: math.div(14, 320) * 100 * 1vw;
+					}
+				}
+				h5{
+					color:$color-text-gray;
+					font-weight: 700;
+					font-size: math.div(14, 1480) * 100 * 1vw;
+					line-height: math.div(16, 1480) * 100 * 1vw;
+					margin-top: math.div(30, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						font-size: math.div(10, 320) * 100 * 1vw;
+						line-height: math.div(14, 320) * 100 * 1vw;
+						margin-top: math.div(20, 320) * 100 * 1vw;
+					}
+				}
+			}
+		}
+		.strat-item:nth-child(3){
+			margin-top: math.div(80, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				margin-top: math.div(40, 320) * 100 * 1vw;
+			}
+		}
+		.strat-icon{
+			z-index: 3;
+			position: absolute;
+			width: math.div(80, 1480) * 100 * 1vw;
+			height: math.div(80, 1480) * 100 * 1vw;
+			top:math.div(320, 1480) * 100 * 1vw;
+			left: math.div(1261-19, 1480) * 100 * 1vw;
+			background: center / contain no-repeat url("../img/strat-icon.svg");
+			@include mobile-breakpoint{
+				position: relative;
+				width: math.div(50, 320) * 100 * 1vw;
+				height: math.div(50, 320) * 100 * 1vw;
+				background-image: url("../img/strat-icon-mob.svg");
+				top: auto;
+				left: auto;
+				transform: translate(0,0);
+				margin-top: math.div(40, 320) * 100 * 1vw;
+			}
+		}	
+	}
+	.decor-rect-6{
+		z-index: 3;
+		left: math.div(1261-19, 1480) * 100 * 1vw;
+		bottom: math.div(59, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			bottom: math.div(30, 320) * 100 * 1vw;
+			left: math.div(261, 320) * 100 * 1vw;
+		}
+	}
+}
+.team-block{
+	@extend %border-bottom;
+	width: 100%;
+	position: relative;
+	.team-content{
+		position: relative;
+		z-index: 3;
+		@extend %content-padding;
+		padding-bottom: math.div(100, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			padding-bottom: math.div(30, 320) * 100 * 1vw;
+		}
+		.team-header{
+			@extend %mobile-header;
+		}
+		.team-title{
+			height: math.div(180, 1480) * 100 * 1vw;
+			overflow: hidden;
+			@include mobile-breakpoint{
+				height: math.div(112, 320) * 100 * 1vw;
+			}
+			h2{
+				@extend %title;
+				position: relative;
+				@include mobile-breakpoint{
+					font-size: math.div(20, 320) * 100 * 1vw;
+					line-height: math.div(28, 320) * 100 * 1vw;
+				}
+			}
+		}
+		.team-annot{
+			@extend %text;
+			position: relative;
+			margin-top: math.div(20, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				margin-top: math.div(20, 320) * 100 * 1vw;
+			}
+		}
+		.team-person{
+			position: relative;
+			width: 100%;
+			display: grid;
+			grid-template-columns: math.div(240, 1480) * 100 * 1vw 1fr math.div(200, 1480) * 100 * 1vw;
+			background-color:$color-fill-block;
+			margin-top: math.div(60, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				width: math.div(242, 320) * 100 * 1vw;
+				grid-template-columns: 1fr;
+				margin-top: math.div(30, 320) * 100 * 1vw;
+			}
+			.photo{
+				position: relative;
+				background: #000000 url("../img/team-photo-back.svg");
+				background-size: cover;
+				width: math.div(240, 1480) * 100 * 1vw;
+				overflow: hidden;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				@include mobile-breakpoint{
+					width: 100%;
+					height: math.div(210, 320) * 100 * 1vw;
+				}
+				img{
+					height: math.div(280, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						height: math.div(190, 320) * 100 * 1vw;
+					}
+				}
+			}
+			.text{
+				box-sizing: border-box;
+				padding: math.div(30, 1480) * 100 * 1vw math.div(35, 1480) * 100 * 1vw;
+				@include mobile-breakpoint{
+					padding: math.div(15, 320) * 100 * 1vw;
+				}
+				p.name{
+					font-size: math.div(20, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						font-size: math.div(14, 320) * 100 * 1vw;
+					}
+				}
+				p.position{
+					color: #707477;
+					font-weight: 700;
+					font-size: math.div(16, 1480) * 100 * 1vw;
+					margin-top: math.div(5, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						font-size: math.div(12, 320) * 100 * 1vw;
+						margin-top: math.div(5, 320) * 100 * 1vw;
+					}
+				}
+				ul{
+					list-style: none;
+				}
+				li{
+					position: relative;
+					font-size: math.div(12, 1480) * 100 * 1vw;
+					line-height: math.div(18, 1480) * 100 * 1vw;
+					margin-top: math.div(10, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						font-size: math.div(10, 320) * 100 * 1vw;
+						line-height: math.div(14, 320) * 100 * 1vw;
+						margin-top: math.div(10, 320) * 100 * 1vw;
+						margin-left: math.div(10, 320) * 100 * 1vw;
+					}
+				}
+				li::before{
+					content: "\25A0";
+					color:#707477;
+					font-size: math.div(8, 1480) * 100 * 1vw;
+					position: absolute;
+					left: -(math.div(20, 1480) * 100 * 1vw);
+					@include mobile-breakpoint{
+						font-size: math.div(5, 320) * 100 * 1vw;
+						left: -(math.div(10, 320) * 100 * 1vw);
+					}
+				}
+			}
+			.logos{
+				box-sizing: border-box;
+				padding: math.div(35, 1480) * 100 * 1vw math.div(20, 1480) * 100 * 1vw;
+				display: grid;
+				justify-items: center;
+				grid-gap: math.div(40, 1480) * 100 * 1vw;
+				width: math.div(200, 1480) * 100 * 1vw;
+				border-left: 1px solid rgba(#707477,0.15);
+				@include mobile-breakpoint{
+					grid-template-columns:1fr 1fr;
+					align-items: center;
+					column-gap: math.div(20, 320) * 100 * 1vw;
+					row-gap: math.div(20, 320) * 100 * 1vw;
+					width: 100%;
+					padding: math.div(20, 320) * 100 * 1vw;
+					border-left: none;
+					border-top: 1px solid rgba(#707477,0.15);
+				}
+			}
+			.logos-1{
+				img:nth-child(1){
+					width: math.div(120, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(90, 320) * 100 * 1vw;
+					}
+				}
+				img:nth-child(2){
+					width: math.div(60, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(60, 320) * 100 * 1vw;
+					}
+				}
+				img:nth-child(3){
+					width: math.div(140, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(110, 320) * 100 * 1vw;
+					}
+				}
+				img:nth-child(4){
+					width: math.div(60, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(46, 320) * 100 * 1vw;
+					}
+				}
+			}
+			.logos-2{
+				@include mobile-breakpoint{
+					row-gap: math.div(25, 320) * 100 * 1vw;
+				}
+				img:nth-child(1){
+					width: math.div(130, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(100, 320) * 100 * 1vw;
+					}
+				}
+				img:nth-child(2){
+					width: math.div(80, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(70, 320) * 100 * 1vw;
+					}
+				}
+				img:nth-child(3){
+					width: math.div(100, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(80, 320) * 100 * 1vw;
+					}
+				}
+				img:nth-child(4){
+					width: math.div(120, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(80, 320) * 100 * 1vw;
+					}
+				}
+				img:nth-child(5){
+					width: math.div(105, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width: math.div(54, 320) * 100 * 1vw;
+					}
+				}
+			}
+		}
+		.team-background{
+			position: relative;
+			margin-top: math.div(60, 1480) * 100 * 1vw;
+			background-color: $color-fill-block;
+			box-sizing: border-box;
+			padding: math.div(30, 1480) * 100 * 1vw math.div(35, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				margin-top: math.div(30, 320) * 100 * 1vw;
+				padding: math.div(20, 320) * 100 * 1vw math.div(15, 320) * 100 * 1vw;
+				width: math.div(242, 320) * 100 * 1vw;
+			}
+			.title{
+				@extend %text;
+			}
+			.logos{
+				margin-top: math.div(15, 1480) * 100 * 1vw;
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr 1fr;
+				row-gap: math.div(20, 1480) * 100 * 1vw;
+				@include mobile-breakpoint{
+					grid-template-columns: 1fr 1fr;
+					row-gap: math.div(25, 320) * 100 * 1vw;
+					margin-top: 0;
+				}
+				.logo{
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					height: math.div(80, 1480) * 100 * 1vw;
+					width: math.div(160, 1480) * 100 * 1vw;
+					@include mobile-breakpoint{
+						width:100%;
+						height: math.div(40, 320) * 100 * 1vw;
+						margin-top: math.div(10, 320) * 100 * 1vw;
+					}
+				}
+				.logo:nth-child(1){
+					img{
+						width: math.div(100, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(70, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(2){
+					img{
+						width: math.div(110, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(76, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(3){
+					img{
+						width: math.div(90, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(70, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(4){
+					img{
+						width: math.div(110, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(70, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(5){
+					img{
+						width: math.div(83, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(62, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(6){
+					img{
+						width: math.div(140, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(90, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(7){
+					img{
+						width: math.div(70, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(50, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(8){
+					img{
+						width: math.div(150, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(90, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(9){
+					img{
+						width: math.div(50, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(40, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(10){
+					img{
+						width: math.div(120, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(90, 320) * 100 * 1vw;
+						}
+					}
+				}
+				.logo:nth-child(11){
+					img{
+						width: math.div(70, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(50, 320) * 100 * 1vw;
+						}
+					}
+					
+				}
+				.logo:nth-child(12){
+					img{
+						width: math.div(90, 1480) * 100 * 1vw;
+						@include mobile-breakpoint{
+							width: math.div(70, 320) * 100 * 1vw;
+						}
+					}
+				}
+			}
+		}
+	}
+	.team-icon{
+		z-index: 3;
+		position: absolute;
+		width: math.div(80, 1480) * 100 * 1vw;
+		height: math.div(80, 1480) * 100 * 1vw;
+		top: math.div(270, 1480) * 100 * 1vw;
+		left: math.div(1261-19, 1480) * 100 * 1vw;
+		background: center / contain no-repeat url("../img/team-icon.svg");
+		@include mobile-breakpoint{
+			position: relative;
+			width: math.div(50, 320) * 100 * 1vw;
+			height: math.div(50, 320) * 100 * 1vw;
+			top: auto;
+			left: auto;
+			background-image: url("../img/team-icon-mob.svg");
+			margin-top: math.div(30, 320) * 100 * 1vw;
+		}
+	}
+	.decor-rect-7{
+		z-index: 3;
+		right:-(math.div(141, 1480) * 100 * 1vw);
+		bottom:0;
+		@include mobile-breakpoint{
+			display: none;
+		}
+	}
+	.decor-rect-12{
+		display: none;
+		@include mobile-breakpoint{
+			display: block;
+			position: absolute;
+			bottom: math.div(30, 320) * 100 * 1vw;
+			left: math.div(261, 320) * 100 * 1vw;
+		}
+	}
+	.team-back-pattern-1{
+		position: absolute;
+		overflow: hidden;
+		top:-(math.div(600, 1480) * 100 * 1vw);
+		right:0;
+		width: math.div(800, 1480) * 100 * 1vw;
+		height: math.div(1200, 1480) * 100 * 1vw;
+		z-index: 0;
+		@include mobile-breakpoint{
+			top: -(math.div(252, 320) * 100 * 1vw);
+			width: math.div(290, 320) * 100 * 1vw;
+			height: math.div(510, 320) * 100 * 1vw;
+		}
+		img{
+			position: relative;
+			left: math.div(200, 1480) * 100 * 1vw;
+			top: math.div(200, 1480) * 100 * 1vw;;
+			transform: rotate(-45deg);
+			width: math.div(802, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				left: math.div(76, 320) * 100 * 1vw;
+				top: math.div(76, 320) * 100 * 1vw;
+				width: math.div(350, 320) * 100 * 1vw;
+			}
+		}
+	}
+	.team-back-pattern-2{
+		position: absolute;
+		top:(math.div(600, 1480) * 100 * 1vw);
+		left:-(math.div(250, 1480) * 100 * 1vw);
+		z-index: 0;
+		@include mobile-breakpoint{
+			top: math.div(680, 320) * 100 * 1vw;
+			left: -(math.div(120, 320) * 100 * 1vw);
+		}
+		img{
+			transform: rotate(180deg);
+			width: math.div(802, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				width: math.div(350, 320) * 100 * 1vw;
+			}
+		}
+	}
+}
+.contact-block{
+	height: 100vh;
+	position: relative;
+	@include mobile-breakpoint{
+		height: auto;
+	}
+	.contact-title{
+		width: 100%;
+		position: absolute;
+		text-align: center;
+		top: math.div(40, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			position: relative;
+			top: auto;
+			padding-top: math.div(26, 320) * 100 * 1vw;
+		}
+		h4{
+			@extend %title;
+			@include mobile-breakpoint{
+				font-size: math.div(16, 320) * 100 * 1vw;
+				line-height: math.div(30, 320) * 100 * 1vw;
+			}
+		}
+	}
+	.contact-mail{
+		z-index: 2;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		@include mobile-breakpoint{
+			position: relative;
+			height: math.div(240, 320) * 100 * 1vw;
+			top: 0;
+			left: 0;
+			transform: translate(0,0);
+		}
+		a{
+			font-size: math.div(40, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				font-size: math.div(20, 320) * 100 * 1vw;
+			}
+		}
+	}
+	.contact-info{
+		z-index: 2;
+		box-sizing: border-box;
+		position: absolute;
+		width: 100%;
+		bottom: math.div(60, 1480) * 100 * 1vw;
+		display: flex;
+		justify-content: space-between;
+		color: #707477;
+		font-size: math.div(16, 1480) * 100 * 1vw;
+		line-height: math.div(25, 1480) * 100 * 1vw;
+		padding: 0 math.div(60, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			position: relative;
+			bottom: auto;
+			flex-direction: column;
+			font-size: math.div(12, 320) * 100 * 1vw;
+			line-height: math.div(18, 320) * 100 * 1vw;
+			padding: math.div(40, 320) * 100 * 1vw
+			math.div(40, 320) * 100 * 1vw
+			math.div(40, 320) * 100 * 1vw
+			math.div(40, 320) * 100 * 1vw;
+		}
+		.copyright{
+			width: math.div(160, 1480) * 100 * 1vw;
+			flex-shrink: 0;
+			@include mobile-breakpoint{
+				width: 100%;
+				order: 3;
+				margin-top: math.div(20, 320) * 100 * 1vw;
+			}
+		}
+		.text{
+			width: math.div(780, 1480) * 100 * 1vw;
+			flex-shrink: 0;
+			text-align: center;
+			@include mobile-breakpoint{
+				width: 100%;
+				text-align: left;
+				order: 1;
+			}
+		}
+		.links{
+			width: math.div(162, 1480) * 100 * 1vw;
+			flex-shrink: 0;
+			@include mobile-breakpoint{
+				width: 100%;
+				order: 2;
+				margin-top: math.div(20, 320) * 100 * 1vw;
+				line-height: math.div(24, 320) * 100 * 1vw;
+			}
+		}
+	}
+	.contact-icon{
+		z-index: 3;
+		position: absolute;
+		width: math.div(80, 1480) * 100 * 1vw;
+		height: math.div(80, 1480) * 100 * 1vw;
+		top:50%;
+		transform: translate(0, -50%);
+		left: math.div(1260-18, 1480) * 100 * 1vw;
+		background: center / contain no-repeat url("../img/contact-icon.svg");
+		@include mobile-breakpoint{
+			position: relative;
+			width: math.div(50, 320) * 100 * 1vw;
+			height: math.div(50, 320) * 100 * 1vw;
+			top: auto;
+			transform: translate(0,0);
+			left: math.div(40, 320) * 100 * 1vw;
+			background-image: url("../img/contact-icon-mob.svg");
+		}
+		.decor-rect-10{
+			display: none;
+			@include mobile-breakpoint{
+				display: block;
+				bottom: 0;
+				left: math.div(221, 320) * 100 * 1vw;
+			}
+		}
+	}
+	.decor-rect-8{
+		left: math.div(1260-18, 1480) * 100 * 1vw;
+		top: math.div(59, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			display: none;
+		}
+	}	
+	.decor-rect-9{
+		left: math.div(59, 1480) * 100 * 1vw;
+		top: math.div(59, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			display: none;
+		}
+	}
+	.contact-back-pattern{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		overflow: hidden;
+		z-index: -1;
+		height: math.div(1000, 1480) * 100 * 1vw;
+		@include mobile-breakpoint{
+			bottom: auto;
+			top: -(math.div(60, 320) * 100 * 1vw);
+			height: math.div(490, 320) * 100 * 1vw;
+		}
+		img:nth-child(1){
+			top: math.div(500, 1480) * 100 * 1vw;
+			left: math.div(590, 1480) * 100 * 1vw;
+			position: absolute;
+			width: math.div(700, 1480) * 100 * 1vw;
+			transform: rotate(90deg);
+			@include mobile-breakpoint{
+				width: math.div(350, 320) * 100 * 1vw;
+				top: math.div(140, 320) * 100 * 1vw;
+				left: math.div(72, 320) * 100 * 1vw;
+				transform: rotate(180deg);
+			}
+		}
+		img:nth-child(2){
+			z-index: 2;
+			top: 0;
+			left: math.div(40, 1480) * 100 * 1vw;
+			position: absolute;
+			width:math.div(802, 1480) * 100 * 1vw;
+			@include mobile-breakpoint{
+				width: math.div(400, 320) * 100 * 1vw;
+				top: 0;
+				left: -(math.div(190, 320) * 100 * 1vw);
+			}
+		}
+	}
+}
