@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	updateVars();
 	// setup animation elements
 	animationElementsSetup();
-	// animationScroll();
 	
 	// click actions and targets
 	const clickAction = new Map();
