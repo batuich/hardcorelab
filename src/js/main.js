@@ -1,5 +1,6 @@
 //import 'normalize.css';
 import '../scss/style.scss';
+import '../sass/back-pattern.sass'
 
 import anime from 'animejs/lib/anime.es.js';
 import ScrambleText from 'scramble-text';
@@ -56,6 +57,8 @@ const chars = [
 	'安', '以', '宇', '衣', '於', '加', '幾', '久', '計', '己', '左', '之', '寸', '世', '曽', '太', '知', '川', '天', '止', '奈', '仁', '奴', '称', '乃', '波', '比', '不', '部', '保'
 	// '末','美','武','女','毛','也','為','由','恵','与','良','利','留','礼','呂', '和','遠','无'
 ];
+let backCirlceAnime;
+let backRectAnime;
 
 // looking for scroll
 window.addEventListener("scroll", () => {
@@ -65,7 +68,7 @@ window.addEventListener("scroll", () => {
 // looking for window size. if its change recalculate block positions
 window.addEventListener("resize", () => {
 	// don't do anything if its mobile or tablet screen
-	if( windowWidth > TABLET_BREAKPOINT){
+	if (windowWidth > TABLET_BREAKPOINT) {
 		updateVars();
 		animationElementsSetup();
 	}
@@ -74,20 +77,20 @@ window.addEventListener("resize", () => {
 // waiting for DOM loaded
 document.addEventListener('DOMContentLoaded', () => {
 	// scramble texts
-  setTimeout(scrambleTitleTextFun, 500);
+	setTimeout(scrambleTitleTextFun, 500);
 	scrambleTitleTextFlag = true;
 	scrambleText();
-	
+
 	// update vars after loading
 	updateVars();
 	// setup animation elements
 	animationElementsSetup();
-	
+
 	// click actions and targets
 	const clickAction = new Map();
-	
+
 	// open perfomance graphics
-	clickAction.set(document.querySelector(".perf-graph-link a"), () =>{
+	clickAction.set(document.querySelector(".perf-graph-link a"), () => {
 		if (windowWidth > MOBILE_BREAKPOINT) {
 			if (popupPerfAnime.reversed) popupPerfAnime.reverse();
 			popupPerfAnime.play();
@@ -97,41 +100,41 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 	// close perfomace graphics
-	clickAction.set(document.querySelector(".perf-graph-button"), () =>{
+	clickAction.set(document.querySelector(".perf-graph-button"), () => {
 		popupPerfAnime.reverse();
 		popupPerfAnime.play();
 	});
-	clickAction.set(document.querySelector(".perf-graph-button-mob"), () =>{
+	clickAction.set(document.querySelector(".perf-graph-button-mob"), () => {
 		popupPerfMobAnime.reverse();
 		popupPerfMobAnime.play();
 	});
 	// mobile contact button
-	clickAction.set(document.querySelector(".on-top-contact-mob button"), () =>{
+	clickAction.set(document.querySelector(".on-top-contact-mob button"), () => {
 		window.location.href = "#contact";
 	});
 	//open mobile menu
-	clickAction.set(document.querySelector(".on-top-menu-mob button"), () =>{
+	clickAction.set(document.querySelector(".on-top-menu-mob button"), () => {
 		if (windowWidth <= MOBILE_BREAKPOINT) {
 			if (menuMobAnime.reversed) menuMobAnime.reverse();
 			menuMobAnime.play();
 		}
 	});
 	// close mobile menu
-	clickAction.set(document.querySelector(".menu-mob button"), () =>{
+	clickAction.set(document.querySelector(".menu-mob button"), () => {
 		menuMobAnime.reverse();
 		menuMobAnime.play();
 	});
 	// desktop menu links
 	let menuLinks = document.querySelectorAll(".on-top-menu ul li a");
 	for (let i = 0; i < menuLinks.length; i++) {
-		clickAction.set(menuLinks[i] , () =>{
+		clickAction.set(menuLinks[i], () => {
 			window.location.href = menuLinks[i].hash;
 		});
 	}
 	// mobile menu links
 	menuLinks = document.querySelectorAll(".menu-mob ul li a");
 	for (let i = 0; i < menuLinks.length; i++) {
-		clickAction.set(menuLinks[i].parentNode , () =>{
+		clickAction.set(menuLinks[i].parentNode, () => {
 			menuMobAnime.reverse();
 			menuMobAnime.play();
 			window.location.href = menuLinks[i].hash;
@@ -149,6 +152,32 @@ document.addEventListener('DOMContentLoaded', () => {
 			//console.log('Нет действия для данного элемента');
 		}
 	});
+	// временное решение поворачиваем круговой паттерн на 90
+	let backCirclePattern = document.querySelector('.circle-pattern');
+	backCirclePattern.style.transform = 'rotate(-90deg)';
+	// длительность анимации поворота паттерна
+	const BACKPATTERNDURATION = 10000;
+	// запус анимации кругового паттерна
+	let backCir = anime({
+		targets: '.circle-svg .circle',
+		rotateY: 360,
+		duration: BACKPATTERNDURATION,
+		loop: true,
+		easing: 'easeInOutSine',
+		delay: anime.stagger(200)
+	});
+	// определение анимации квадратного паттерна
+	let backRect = anime({
+		targets: '.rect-svg .rect',
+		rotateY: 360,
+		duration: BACKPATTERNDURATION,
+		loop: true,
+		easing: 'easeInOutSine',
+		delay: anime.stagger(200),
+		autoplay: false
+	});
+	// костыль запуск через паузу квадратного паттерна
+	setTimeout(backRect.play, BACKPATTERNDURATION / 2);
 });
 
 //FUNCTIONS
@@ -192,7 +221,7 @@ const animationElementsSetup = () => {
 	const siteElOffest = (windowWidth > MOBILE_BREAKPOINT) ? 100 : 180;
 	// animation duration
 	const siteElShowOffset = (windowWidth > MOBILE_BREAKPOINT) ? 100 : 200;
-	
+
 	let allEl = document.querySelectorAll('.com-an');
 	for (let i = 0; i < allEl.length; i++) {
 		allEl[i].style.top = pxToPx(siteElOffest) + 'px';
@@ -247,7 +276,7 @@ const animationElementsSetup = () => {
 
 	//ontop animation elements
 	// do not hide if mobile screen
-	if( windowWidth > MOBILE_BREAKPOINT ){
+	if (windowWidth > MOBILE_BREAKPOINT) {
 		ontopDecorRectAnime = anime({
 			targets: '.decor-rect-1',
 			opacity: 0,
@@ -444,6 +473,119 @@ const animationElementsSetup = () => {
 		},
 		autoplay: false
 	});
+	//background pattern scroll animation
+	backCirlceAnime = anime({
+		targets: '.circle-pattern',
+		translateX:[
+			{ value: pxToPx(200),
+				duration: heightStartBlock
+			},
+			{ value: pxToPx(200), 
+				duration: heightWedoBlock
+			},
+			{ value: pxToPx(200), 
+				duration: heightPerfBlock
+			},
+			{ value: -pxToPx(560), 
+				duration: heightStratBlock
+			},
+			{ value: -pxToPx(560), 
+				duration: heightTeamBlock
+			},
+		],
+		translateY:[
+			{ value: pxToPx(0),
+				duration: heightStartBlock
+			},
+			{ value: pxToPx(400), 
+				duration: heightWedoBlock
+			},
+			{ value: pxToPx(400), 
+				duration: heightPerfBlock
+			},
+			{ value: pxToPx(400), 
+				duration: heightStratBlock
+			},
+			{ value: pxToPx(0), 
+				duration: heightTeamBlock
+			},
+		],
+		rotate:[
+			{ value: 0,
+				duration: heightStartBlock
+			},
+			{ value: 90, 
+				duration: heightWedoBlock
+			},
+			{ value: 90, 
+				duration: heightPerfBlock
+			},
+			{ value: 180, 
+				duration: heightStratBlock
+			},
+			{ value: 270, 
+				duration: heightTeamBlock
+			},
+		],
+		easing: 'linear',
+		autoplay: false
+	});
+	backRectAnime = anime({
+		targets: '.rect-pattern',
+		translateX:[
+			{ value: -pxToPx(200),
+				duration: heightStartBlock
+			},
+			{ value: -pxToPx(200), 
+				duration: heightWedoBlock
+			},
+			{ value: -pxToPx(200), 
+				duration: heightPerfBlock
+			},
+			{ value: pxToPx(560), 
+				duration: heightStratBlock
+			},
+			{ value: pxToPx(560), 
+				duration: heightTeamBlock
+			},
+		],
+		translateY:[
+			{ value: pxToPx(0),
+				duration: heightStartBlock
+			},
+			{ value: -pxToPx(400), 
+				duration: heightWedoBlock
+			},
+			{ value: -pxToPx(400), 
+				duration: heightPerfBlock
+			},
+			{ value: -pxToPx(400), 
+				duration: heightStratBlock
+			},
+			{ value: pxToPx(0), 
+				duration: heightTeamBlock
+			},
+		],
+		rotate:[
+			{ value: 45,
+				duration: heightStartBlock
+			},
+			{ value: 90, 
+				duration: heightWedoBlock
+			},
+			{ value: 180, 
+				duration: heightPerfBlock
+			},
+			{ value: 225, 
+				duration: heightStratBlock
+			},
+			{ value: 315, 
+				duration: heightTeamBlock
+			},
+		],
+		easing: 'linear',
+		autoplay: false
+	});
 
 	animationSetupFlag = true;
 }
@@ -454,12 +596,12 @@ const animationScroll = () => {
 	// if animated element setuped
 	if (animationSetupFlag) {
 		//scramble hero title
-		if( windowScrollAmount == 0 && scrambleTitleTextFlag){
+		if (windowScrollAmount == 0 && scrambleTitleTextFlag) {
 			scrambleTitleTextFun();
 		}
 		// hide menu and decor rect when we scrolled to footer
 		let animTime = (windowScrollAmount - offsetContactBlock + pxToPx(150)) * 10;
-		if( windowWidth > MOBILE_BREAKPOINT ) ontopDecorRectAnime.seek(animTime);
+		if (windowWidth > MOBILE_BREAKPOINT) ontopDecorRectAnime.seek(animTime);
 		ontopMenuAnime.seek(animTime);
 		ontopContactAnime.seek(animTime);
 		// menu items
@@ -476,6 +618,9 @@ const animationScroll = () => {
 		for (let i = 0; i < commonElAnime.length; i++) {
 			commonElAnime[i].anime.seek(windowScrollAmount - commonElAnime[i].offsetY);
 		}
+		//back pattern element animation on scroll
+		backCirlceAnime.seek(windowScrollAmount);
+		backRectAnime.seek(windowScrollAmount);
 	}
 }
 //scramble title

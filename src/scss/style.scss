@@ -415,24 +415,6 @@ a{
 			left: math.div(261, 320) * 100 * 1vw;
 		}
 	}
-	.start-back-pattern{
-		position: absolute;
-		top:50%;
-		left:50%;
-		transform: translate(-50%, -50%);
-		z-index: 0;
-		@include mobile-breakpoint{
-			top: -(math.div(100, 320) * 100 * 1vw);
-			left: 50%;
-			transform: translate(-50%, 0);
-		}
-		img{
-			width: math.div(1350, 1480) * 100 * 1vw;
-			@include mobile-breakpoint{
-				width: math.div(600, 320) * 100 * 1vw;
-			}
-		}
-	}
 }
 .wedo-block{
 	@extend %border-bottom;
@@ -774,40 +756,6 @@ a{
 			width: math.div(50, 320) * 100 * 1vw;
 			height: math.div(50, 320) * 100 * 1vw;
 			background-image: url("../img/perf-icon-mob.svg");
-		}
-	}
-	.perf-back-pattern-1{
-		position: absolute;
-		overflow: hidden;
-		top:-(math.div(140, 1480) * 100 * 1vw);
-		right:0;
-		z-index: 0;
-		width: math.div(540, 1480) * 100 * 1vw;
-		@include mobile-breakpoint{
-			width: math.div(205, 320) * 100 * 1vw;
-			top: -(math.div(56, 320) * 100 * 1vw);
-		}
-		img{
-			width: math.div(700, 1480) * 100 * 1vw;
-			@include mobile-breakpoint{
-				width: math.div(350, 320) * 100 * 1vw;
-			}
-		}
-	}
-	.perf-back-pattern-2{
-		position: absolute;
-		top:(math.div(360, 1480) * 100 * 1vw);
-		left:-(math.div(250, 1480) * 100 * 1vw);
-		z-index: 0;
-		@include mobile-breakpoint{
-			top: math.div(240, 320) * 100 * 1vw;
-			left: -(math.div(160,320) * 100 * 1vw);
-		}
-		img{
-			width: math.div(802, 1480) * 100 * 1vw;
-			@include mobile-breakpoint{
-				width: math.div(400, 320) * 100 * 1vw;
-			}
 		}
 	}
 	.decor-rect-5{
@@ -1300,49 +1248,6 @@ a{
 			left: math.div(261, 320) * 100 * 1vw;
 		}
 	}
-	.team-back-pattern-1{
-		position: absolute;
-		overflow: hidden;
-		top:-(math.div(600, 1480) * 100 * 1vw);
-		right:0;
-		width: math.div(800, 1480) * 100 * 1vw;
-		height: math.div(1200, 1480) * 100 * 1vw;
-		z-index: 0;
-		@include mobile-breakpoint{
-			top: -(math.div(252, 320) * 100 * 1vw);
-			width: math.div(290, 320) * 100 * 1vw;
-			height: math.div(510, 320) * 100 * 1vw;
-		}
-		img{
-			position: relative;
-			left: math.div(200, 1480) * 100 * 1vw;
-			top: math.div(200, 1480) * 100 * 1vw;;
-			transform: rotate(-45deg);
-			width: math.div(802, 1480) * 100 * 1vw;
-			@include mobile-breakpoint{
-				left: math.div(76, 320) * 100 * 1vw;
-				top: math.div(76, 320) * 100 * 1vw;
-				width: math.div(350, 320) * 100 * 1vw;
-			}
-		}
-	}
-	.team-back-pattern-2{
-		position: absolute;
-		top:(math.div(600, 1480) * 100 * 1vw);
-		left:-(math.div(250, 1480) * 100 * 1vw);
-		z-index: 0;
-		@include mobile-breakpoint{
-			top: math.div(680, 320) * 100 * 1vw;
-			left: -(math.div(120, 320) * 100 * 1vw);
-		}
-		img{
-			transform: rotate(180deg);
-			width: math.div(802, 1480) * 100 * 1vw;
-			@include mobile-breakpoint{
-				width: math.div(350, 320) * 100 * 1vw;
-			}
-		}
-	}
 }
 .contact-block{
 	height: 100vh;
@@ -1484,44 +1389,6 @@ a{
 		top: math.div(59, 1480) * 100 * 1vw;
 		@include mobile-breakpoint{
 			display: none;
-		}
-	}
-	.contact-back-pattern{
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-		overflow: hidden;
-		z-index: -1;
-		height: math.div(1000, 1480) * 100 * 1vw;
-		@include mobile-breakpoint{
-			bottom: auto;
-			top: -(math.div(60, 320) * 100 * 1vw);
-			height: math.div(490, 320) * 100 * 1vw;
-		}
-		img:nth-child(1){
-			top: math.div(500, 1480) * 100 * 1vw;
-			left: math.div(590, 1480) * 100 * 1vw;
-			position: absolute;
-			width: math.div(700, 1480) * 100 * 1vw;
-			transform: rotate(90deg);
-			@include mobile-breakpoint{
-				width: math.div(350, 320) * 100 * 1vw;
-				top: math.div(140, 320) * 100 * 1vw;
-				left: math.div(72, 320) * 100 * 1vw;
-				transform: rotate(180deg);
-			}
-		}
-		img:nth-child(2){
-			z-index: 2;
-			top: 0;
-			left: math.div(40, 1480) * 100 * 1vw;
-			position: absolute;
-			width:math.div(802, 1480) * 100 * 1vw;
-			@include mobile-breakpoint{
-				width: math.div(400, 320) * 100 * 1vw;
-				top: 0;
-				left: -(math.div(190, 320) * 100 * 1vw);
-			}
 		}
 	}
 }
