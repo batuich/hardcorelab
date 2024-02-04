@@ -1,5 +1,11 @@
 @use "sass:math"
 
+$mobileBP: 576px
+
+@mixin mobile-breakpoint
+	@media only screen and (max-width: $mobileBP)
+		@content
+
 .back-pattern
 	position: fixed
 	top: 0
@@ -14,6 +20,9 @@
 			will-change: transform
 			width: math.div(802, 1480) * 100 * 1vw
 			height: math.div(802, 1480) * 100 * 1vw
+			@include mobile-breakpoint
+				width: math.div(802, 320) * 100 * 1vw
+				height: math.div(802, 320) * 100 * 1vw
 			.circle
 				transform-origin: center
 				will-change: transform
