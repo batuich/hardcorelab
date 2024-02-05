@@ -56,8 +56,11 @@ const chars = [
 	'安', '以', '宇', '衣', '於', '加', '幾', '久', '計', '己', '左', '之', '寸', '世', '曽', '太', '知', '川', '天', '止', '奈', '仁', '奴', '称', '乃', '波', '比', '不', '部', '保'
 	// '末','美','武','女','毛','也','為','由','恵','与','良','利','留','礼','呂', '和','遠','无'
 ];
+//background animations
 let backCirlceAnime;
 let backRectAnime;
+//wedo graph animation
+let wedoGraph;
 
 // looking for scroll
 window.addEventListener("scroll", () => {
@@ -219,7 +222,7 @@ const updateVars = () => {
 const animationElementsSetup = () => {
 	//site elements common animation
 	// offset from the screen bottom to show
-	const siteElOffest = (windowWidth > MOBILE_BREAKPOINT) ? 100 : 100;
+	const siteElOffest = (windowWidth > MOBILE_BREAKPOINT) ? 100 : 50;
 	// animation duration
 	const siteElShowOffset = (windowWidth > MOBILE_BREAKPOINT) ? 100 : 50;
 
@@ -247,6 +250,7 @@ const animationElementsSetup = () => {
 		if (a.completed) a.reverse();
 		if (a.reversePlayback) a.completed = false;
 		scrambleWedoTitle.play().start();
+		wedoGraph.play();
 	}
 	commonElAnime[9].anime.loopComplete = function (a) {
 		if (a.completed) a.reverse();
@@ -475,7 +479,7 @@ const animationElementsSetup = () => {
 		autoplay: false
 	});
 	//background pattern scroll animation
-	let backPatternNumbersFlag;
+	let screenFlag;
 	let backPatternNumbersCircle = {
 		desktop: {
 			translateX: [200,200,200,-560,-560],
@@ -501,41 +505,41 @@ const animationElementsSetup = () => {
 		}
 	};
 
-	backPatternNumbersFlag = windowWidth > MOBILE_BREAKPOINT ? 'desktop' : 'mobile';
+	screenFlag = windowWidth > MOBILE_BREAKPOINT ? 'desktop' : 'mobile';
 
 	backCirlceAnime = anime({
 		targets: '.circle-pattern',
 		translateX:[
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateX[0]),
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[0]),
 				duration: heightStartBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateX[1]), 
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[1]), 
 				duration: heightWedoBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateX[2]), 
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[2]), 
 				duration: heightPerfBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateX[3]), 
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[3]), 
 				duration: heightStratBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateX[4]), 
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[4]), 
 				duration: heightTeamBlock
 			},
 		],
 		translateY:[
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateY[0]),
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[0]),
 				duration: heightStartBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateY[1]), 
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[1]), 
 				duration: heightWedoBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateY[2]), 
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[2]), 
 				duration: heightPerfBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateY[3]), 
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[3]), 
 				duration: heightStratBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[backPatternNumbersFlag].translateY[4]), 
+			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[4]), 
 				duration: heightTeamBlock
 			},
 		],
@@ -544,19 +548,19 @@ const animationElementsSetup = () => {
 			{ value: -90,
 				duration: 0
 			},
-			{ value: backPatternNumbersCircle[backPatternNumbersFlag].rotate[0],
+			{ value: backPatternNumbersCircle[screenFlag].rotate[0],
 				duration: heightStartBlock
 			},
-			{ value: backPatternNumbersCircle[backPatternNumbersFlag].rotate[1], 
+			{ value: backPatternNumbersCircle[screenFlag].rotate[1], 
 				duration: heightWedoBlock
 			},
-			{ value: backPatternNumbersCircle[backPatternNumbersFlag].rotate[2], 
+			{ value: backPatternNumbersCircle[screenFlag].rotate[2], 
 				duration: heightPerfBlock
 			},
-			{ value: backPatternNumbersCircle[backPatternNumbersFlag].rotate[3], 
+			{ value: backPatternNumbersCircle[screenFlag].rotate[3], 
 				duration: heightStratBlock
 			},
-			{ value: backPatternNumbersCircle[backPatternNumbersFlag].rotate[4], 
+			{ value: backPatternNumbersCircle[screenFlag].rotate[4], 
 				duration: heightTeamBlock
 			},
 		],
@@ -566,58 +570,79 @@ const animationElementsSetup = () => {
 	backRectAnime = anime({
 		targets: '.rect-pattern',
 		translateX:[
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateX[0]),
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[0]),
 				duration: heightStartBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateX[1]),
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[1]),
 				duration: heightWedoBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateX[2]), 
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[2]), 
 				duration: heightPerfBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateX[3]),
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[3]),
 				duration: heightStratBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateX[4]),
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[4]),
 				duration: heightTeamBlock
 			},
 		],
 		translateY:[
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateY[0]),
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[0]),
 				duration: heightStartBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateY[1]),
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[1]),
 				duration: heightWedoBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateY[2]),
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[2]),
 				duration: heightPerfBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateY[3]),
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[3]),
 				duration: heightStratBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[backPatternNumbersFlag].translateY[4]),
+			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[4]),
 				duration: heightTeamBlock
 			},
 		],
 		rotate:[
-			{ value: backPatternNumbersRect[backPatternNumbersFlag].rotate[0],
+			{ value: backPatternNumbersRect[screenFlag].rotate[0],
 				duration: heightStartBlock
 			},
-			{ value: backPatternNumbersRect[backPatternNumbersFlag].rotate[1],
+			{ value: backPatternNumbersRect[screenFlag].rotate[1],
 				duration: heightWedoBlock
 			},
-			{ value: backPatternNumbersRect[backPatternNumbersFlag].rotate[2],
+			{ value: backPatternNumbersRect[screenFlag].rotate[2],
 				duration: heightPerfBlock
 			},
-			{ value: backPatternNumbersRect[backPatternNumbersFlag].rotate[3],
+			{ value: backPatternNumbersRect[screenFlag].rotate[3],
 				duration: heightStratBlock
 			},
-			{ value: backPatternNumbersRect[backPatternNumbersFlag].rotate[4],
+			{ value: backPatternNumbersRect[screenFlag].rotate[4],
 				duration: heightTeamBlock
 			},
 		],
 		easing: 'linear',
 		autoplay: false
+	});
+	//wedo graph animation
+
+	let wedoGraph = anime({
+		targets: '.wedo-graph-svg .bar',
+		keyframes: [
+			{
+				duration: 500,
+				opacity: 0,
+				translateY: 40,
+			},
+			{
+				duration: 200,
+				opacity: 1,
+				translateY: 10,
+			}
+		],
+		loop: false,
+		autoplay: false,
+		easing: 'easeOutBack',
+		delay: anime.stagger(20)
 	});
 
 	animationSetupFlag = true;

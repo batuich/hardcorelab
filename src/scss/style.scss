@@ -493,8 +493,11 @@ a{
 			right:-(math.div(280,320) * 100 * 1vw);
 			top: math.div(30,320) * 100 * 1vw;
 		}
-		img{
+		.wedo-graph-svg{
 			width: math.div(1360-19, 1480) * 100 * 1vw;
+			.bar{
+				opacity: 0;
+			}
 			@include mobile-breakpoint{
 				width: math.div(1360, 320) * 100 * 1vw;
 			}
