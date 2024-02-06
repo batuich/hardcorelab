@@ -735,9 +735,11 @@ a{
 			a{
 				@extend %text;
 			}
-			img{
+			#icon-perfomance{
 				margin-bottom: math.div(2, 1480) * 100 * 1vw;
 				margin-left: math.div(15, 1480) * 100 * 1vw;
+				width: math.div(27, 1480) * 100 * 1vw;
+				height: math.div(24, 1480) * 100 * 1vw;
 				@include mobile-breakpoint{
 					display: none;
 				}

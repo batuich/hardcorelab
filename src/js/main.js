@@ -3,6 +3,7 @@ import '../scss/style.scss';
 
 import anime from 'animejs/lib/anime.es.js';
 import ScrambleText from 'scramble-text';
+import lottie from 'lottie-web';
 
 // vars
 // blocks parametrs
@@ -61,6 +62,8 @@ let backCirlceAnime;
 let backRectAnime;
 //wedo graph animation
 let wedoGraph;
+//icon perfomance link animation
+let iconPerfomanceAnim;
 
 // looking for scroll
 window.addEventListener("scroll", () => {
@@ -90,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// click actions and targets
 	const clickAction = new Map();
-
 	// open perfomance graphics
 	clickAction.set(document.querySelector(".perf-graph-link a"), () => {
 		if (windowWidth > MOBILE_BREAKPOINT) {
@@ -159,6 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			//console.log('Нет действия для данного элемента');
 		}
 	});
+	// perfomance icon
+	document.querySelector(".perf-graph-link a").addEventListener('mouseenter', () => {
+		iconPerfomanceAnim.goToAndPlay(1);
+	});
+
 	// длительность анимации поворота паттерна
 	const BACKPATTERNDURATION = 10000;
 	// запус анимации кругового паттерна
@@ -278,7 +285,6 @@ const animationElementsSetup = () => {
 		if (a.reversePlayback) a.completed = false;
 		scrambleNum4.play().start();
 	}
-
 	//ontop animation elements
 	// do not hide if mobile screen
 	if (windowWidth > MOBILE_BREAKPOINT) {
@@ -482,26 +488,26 @@ const animationElementsSetup = () => {
 	let screenFlag;
 	let backPatternNumbersCircle = {
 		desktop: {
-			translateX: [200,200,200,-560,-560],
-			translateY: [0,400,400,400,0],
-			rotate: [0,90,90,180,270]
+			translateX: [200, 200, 200, -560, -560],
+			translateY: [0, 400, 400, 400, 0],
+			rotate: [0, 90, 90, 180, 270]
 		},
 		mobile: {
-			translateX: [0,0,-150,-150,-150],
-			translateY: [-100,-100,-100,-100,200],
-			rotate: [-90,-90,-180,-180,-270]
+			translateX: [0, 0, -150, -150, -150],
+			translateY: [-100, -100, -100, -100, 200],
+			rotate: [-90, -90, -180, -180, -270]
 		}
 	};
 	let backPatternNumbersRect = {
 		desktop: {
-			translateX: [-200,-200,-200,560,560],
-			translateY: [0,-400,-400,-400,0],
-			rotate: [45,90,180,225,315]
+			translateX: [-200, -200, -200, 560, 560],
+			translateY: [0, -400, -400, -400, 0],
+			rotate: [45, 90, 180, 225, 315]
 		},
 		mobile: {
-			translateX: [0,0,150,150,150],
-			translateY: [150,150,150,150,-100],
-			rotate: [0,0,-45,-90,-180]
+			translateX: [0, 0, 150, 150, 150],
+			translateY: [150, 150, 150, 150, -100],
+			rotate: [0, 0, -45, -90, -180]
 		}
 	};
 
@@ -509,58 +515,74 @@ const animationElementsSetup = () => {
 
 	backCirlceAnime = anime({
 		targets: '.circle-pattern',
-		translateX:[
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[0]),
+		translateX: [
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[0]),
 				duration: heightStartBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[1]), 
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[1]),
 				duration: heightWedoBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[2]), 
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[2]),
 				duration: heightPerfBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[3]), 
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[3]),
 				duration: heightStratBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[4]), 
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[4]),
 				duration: heightTeamBlock
 			},
 		],
-		translateY:[
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[0]),
+		translateY: [
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[0]),
 				duration: heightStartBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[1]), 
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[1]),
 				duration: heightWedoBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[2]), 
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[2]),
 				duration: heightPerfBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[3]), 
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[3]),
 				duration: heightStratBlock
 			},
-			{ value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[4]), 
+			{
+				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[4]),
 				duration: heightTeamBlock
 			},
 		],
-		rotate:[
+		rotate: [
 			//defaine start rotation in first place
-			{ value: -90,
+			{
+				value: -90,
 				duration: 0
 			},
-			{ value: backPatternNumbersCircle[screenFlag].rotate[0],
+			{
+				value: backPatternNumbersCircle[screenFlag].rotate[0],
 				duration: heightStartBlock
 			},
-			{ value: backPatternNumbersCircle[screenFlag].rotate[1], 
+			{
+				value: backPatternNumbersCircle[screenFlag].rotate[1],
 				duration: heightWedoBlock
 			},
-			{ value: backPatternNumbersCircle[screenFlag].rotate[2], 
+			{
+				value: backPatternNumbersCircle[screenFlag].rotate[2],
 				duration: heightPerfBlock
 			},
-			{ value: backPatternNumbersCircle[screenFlag].rotate[3], 
+			{
+				value: backPatternNumbersCircle[screenFlag].rotate[3],
 				duration: heightStratBlock
 			},
-			{ value: backPatternNumbersCircle[screenFlag].rotate[4], 
+			{
+				value: backPatternNumbersCircle[screenFlag].rotate[4],
 				duration: heightTeamBlock
 			},
 		],
@@ -569,54 +591,69 @@ const animationElementsSetup = () => {
 	});
 	backRectAnime = anime({
 		targets: '.rect-pattern',
-		translateX:[
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[0]),
+		translateX: [
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[0]),
 				duration: heightStartBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[1]),
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[1]),
 				duration: heightWedoBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[2]), 
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[2]),
 				duration: heightPerfBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[3]),
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[3]),
 				duration: heightStratBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateX[4]),
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[4]),
 				duration: heightTeamBlock
 			},
 		],
-		translateY:[
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[0]),
+		translateY: [
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[0]),
 				duration: heightStartBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[1]),
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[1]),
 				duration: heightWedoBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[2]),
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[2]),
 				duration: heightPerfBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[3]),
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[3]),
 				duration: heightStratBlock
 			},
-			{ value: pxToPx(backPatternNumbersRect[screenFlag].translateY[4]),
+			{
+				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[4]),
 				duration: heightTeamBlock
 			},
 		],
-		rotate:[
-			{ value: backPatternNumbersRect[screenFlag].rotate[0],
+		rotate: [
+			{
+				value: backPatternNumbersRect[screenFlag].rotate[0],
 				duration: heightStartBlock
 			},
-			{ value: backPatternNumbersRect[screenFlag].rotate[1],
+			{
+				value: backPatternNumbersRect[screenFlag].rotate[1],
 				duration: heightWedoBlock
 			},
-			{ value: backPatternNumbersRect[screenFlag].rotate[2],
+			{
+				value: backPatternNumbersRect[screenFlag].rotate[2],
 				duration: heightPerfBlock
 			},
-			{ value: backPatternNumbersRect[screenFlag].rotate[3],
+			{
+				value: backPatternNumbersRect[screenFlag].rotate[3],
 				duration: heightStratBlock
 			},
-			{ value: backPatternNumbersRect[screenFlag].rotate[4],
+			{
+				value: backPatternNumbersRect[screenFlag].rotate[4],
 				duration: heightTeamBlock
 			},
 		],
@@ -624,9 +661,9 @@ const animationElementsSetup = () => {
 		autoplay: false
 	});
 	//wedo graph animation
-
+	let wedoTargets = screenFlag == 'desktop' ? '.wedo-graph-svg .bar' : '.wedo-graph-svg .bar-mobile';
 	let wedoGraph = anime({
-		targets: '.wedo-graph-svg .bar',
+		targets: wedoTargets,
 		keyframes: [
 			{
 				duration: 500,
@@ -643,6 +680,15 @@ const animationElementsSetup = () => {
 		autoplay: false,
 		easing: 'easeOutBack',
 		delay: anime.stagger(20)
+	});
+	// perfomance icon animation
+	let iconPerfomance = document.querySelector('#icon-perfomance');
+	iconPerfomanceAnim = lottie.loadAnimation({
+		container: iconPerfomance, // the dom element that will contain the animation
+		renderer: 'svg',
+		loop: false,
+		autoplay: false,
+		path: 'lottie/icon-perfomance.json' // the path to the animation json
 	});
 
 	animationSetupFlag = true;
