@@ -58,6 +58,14 @@ const chars = [
 	// '末','美','武','女','毛','也','為','由','恵','与','良','利','留','礼','呂', '和','遠','无'
 ];
 //background animations
+// длительность анимации поворота паттерна
+const BACKPATTERNDURATION = 10000;
+const PATTERN_SPEED = 10;
+const CIRCLE_AMOUNT = 37;
+const RECT_AMOUNT = 32;
+const BACK_ELEMENTS_DELAY = 200;
+let backCir;
+let backRect;
 let backCirlceAnime;
 let backRectAnime;
 //wedo graph animation
@@ -153,12 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.addEventListener('click', (event) => {
 		event.preventDefault();
 		const clickedElement = event.target;
-		//console.log(clickedElement);
 		if (clickAction.has(clickedElement)) {
 			const action = clickAction.get(clickedElement);
 			action();
 		} else {
-			//console.log('Нет действия для данного элемента');
 		}
 	});
 	// perfomance icon
@@ -166,29 +172,34 @@ document.addEventListener('DOMContentLoaded', () => {
 		iconPerfomanceAnim.goToAndPlay(1);
 	});
 
-	// длительность анимации поворота паттерна
-	const BACKPATTERNDURATION = 10000;
-	// запус анимации кругового паттерна
-	let backCir = anime({
+	// page length multiplied
+	let animPageLength = offsetContactBlock;
+	// animation length with stagger effect
+	// let durationCircle = BACKPATTERNDURATION + BACK_ELEMENTS_DELAY *(CIRCLE_AMOUNT-1);
+	// let durationRect = BACKPATTERNDURATION + BACK_ELEMENTS_DELAY *(RECT_AMOUNT-1);
+	// calculate amount of rotation
+	// let amountCircleRotation = animPageLength * PATTERN_SPEED / durationCircle;
+	// let amountRectRotation = animPageLength * PATTERN_SPEED / durationRect;
+
+	backCir = anime({
 		targets: '.circle-svg .circle',
-		rotateY: 360,
-		duration: BACKPATTERNDURATION,
-		loop: true,
+		rotateY: 360 * 3,
+		duration: animPageLength * PATTERN_SPEED,
 		easing: 'easeInOutSine',
-		delay: anime.stagger(200)
-	});
+		delay: anime.stagger(BACK_ELEMENTS_DELAY),
+		autoplay: false,
+		complete: () => { console.log("CIRCLE DONE"); }
+		});
 	// определение анимации квадратного паттерна
-	let backRect = anime({
+	backRect = anime({
 		targets: '.rect-svg .rect',
-		rotateY: 360,
-		duration: BACKPATTERNDURATION,
-		loop: true,
+		rotateY: 360 * 3,
+		duration: animPageLength * PATTERN_SPEED,
 		easing: 'easeInOutSine',
-		delay: anime.stagger(200),
-		autoplay: false
+		delay: anime.stagger(BACK_ELEMENTS_DELAY),
+		autoplay: false,
+		complete: () => { console.log("RECT DONE"); }
 	});
-	// костыль запуск через паузу квадратного паттерна
-	setTimeout(backRect.play, BACKPATTERNDURATION / 8);
 });
 
 //FUNCTIONS
@@ -723,6 +734,8 @@ const animationScroll = () => {
 			commonElAnime[i].anime.seek(windowScrollAmount - commonElAnime[i].offsetY);
 		}
 		//back pattern element animation on scroll
+		backCir.seek(windowScrollAmount*PATTERN_SPEED);
+		backRect.seek(windowScrollAmount*PATTERN_SPEED);
 		backCirlceAnime.seek(windowScrollAmount);
 		backRectAnime.seek(windowScrollAmount);
 	}
@@ -801,4 +814,12 @@ const pxToVm = (n) => {
 const pxToPx = (n) => {
 	n = pxToVm(n);
 	return vmToPx(n);
+}
+// page scroll height
+const scrollHeight = () => {
+	return Math.max(
+		document.body.scrollHeight, document.documentElement.scrollHeight,
+		document.body.offsetHeight, document.documentElement.offsetHeight,
+		document.body.clientHeight, document.documentElement.clientHeight
+	);
 }
