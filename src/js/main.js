@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// page length multiplied
 	let animPageLength = offsetContactBlock;
-	// animation length with stagger effect
+	// animation length with stagger effectç
 	// let durationCircle = BACKPATTERNDURATION + BACK_ELEMENTS_DELAY *(CIRCLE_AMOUNT-1);
 	// let durationRect = BACKPATTERNDURATION + BACK_ELEMENTS_DELAY *(RECT_AMOUNT-1);
 	// calculate amount of rotation
