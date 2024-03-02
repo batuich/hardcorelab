@@ -1402,52 +1402,18 @@ a{
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
+	background: center url('../img/back.svg');
 	@include mobile-breakpoint{
 		width: 100%;
 		height: 100vh;
 		height: 100lvh;
 	}
-	.circle-pattern{
+	video{
 		position: absolute;
-		top: -(math.div(200, 1480) * 100 * 1vw);
-		left: math.div(600, 1480) * 100 * 1vw;
-		@include mobile-breakpoint{
-			top: -(math.div(10, 320) * 100 * 1vw);
-			left: math.div(50, 320) * 100 * 1vw;
-		}
-		.circle-svg{
-			will-change: transform;
-			width: math.div(802, 1480) * 100 * 1vw;
-			height: math.div(802, 1480) * 100 * 1vw;
-			@include mobile-breakpoint{
-				width: math.div(401, 320) * 100 * 1vw;
-				height: math.div(401, 320) * 100 * 1vw;
-			}
-			.circle{
-				transform-origin: center;
-			}
-		}
-	}
-	.rect-pattern{
-		position: absolute;
-		top: math.div(160, 1480) * 100 * 1vw;
-		left: math.div(40, 1480) * 100 * 1vw;
-		@include mobile-breakpoint{
-			top: math.div(50, 320) * 100 * 1vw;
-			left: -(math.div(150, 320) * 100 * 1vw);
-		}
-		.rect-svg{
-			will-change: transform;
-			width: math.div(1000, 1480) * 100 * 1vw;
-			height: math.div(1000, 1480) * 100 * 1vw;
-			@include mobile-breakpoint{
-				width: math.div(500, 320) * 100 * 1vw;
-				height: math.div(500, 320) * 100 * 1vw;
-			}
-			.rect{
-				transform-origin: center;
-			}
-		}
+		left: 50%;
+		top:50%;
+		transform: translate(-50%,-50%);
+		height: 100%;
 	}
 }
