@@ -57,21 +57,11 @@ const chars = [
 	'安', '以', '宇', '衣', '於', '加', '幾', '久', '計', '己', '左', '之', '寸', '世', '曽', '太', '知', '川', '天', '止', '奈', '仁', '奴', '称', '乃', '波', '比', '不', '部', '保'
 	// '末','美','武','女','毛','也','為','由','恵','与','良','利','留','礼','呂', '和','遠','无'
 ];
-//background animations
-// длительность анимации поворота паттерна
-const BACKPATTERNDURATION = 10000;
-const PATTERN_SPEED = 10;
-const CIRCLE_AMOUNT = 37;
-const RECT_AMOUNT = 32;
-const BACK_ELEMENTS_DELAY = 200;
-let backCir;
-let backRect;
-let backCirlceAnime;
-let backRectAnime;
-//wedo graph animation
-let wedoGraph;
 //icon perfomance link animation
 let iconPerfomanceAnim;
+
+//background
+//const videoBack = document.querySelector('#back');
 
 // looking for scroll
 window.addEventListener("scroll", () => {
@@ -170,35 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	// perfomance icon
 	document.querySelector(".perf-graph-link a").addEventListener('mouseenter', () => {
 		iconPerfomanceAnim.goToAndPlay(1);
-	});
-
-	// page length multiplied
-	let animPageLength = offsetContactBlock;
-	// animation length with stagger effectç
-	// let durationCircle = BACKPATTERNDURATION + BACK_ELEMENTS_DELAY *(CIRCLE_AMOUNT-1);
-	// let durationRect = BACKPATTERNDURATION + BACK_ELEMENTS_DELAY *(RECT_AMOUNT-1);
-	// calculate amount of rotation
-	// let amountCircleRotation = animPageLength * PATTERN_SPEED / durationCircle;
-	// let amountRectRotation = animPageLength * PATTERN_SPEED / durationRect;
-
-	backCir = anime({
-		targets: '.circle-svg .circle',
-		rotateY: 360 * 3,
-		duration: animPageLength * PATTERN_SPEED,
-		easing: 'easeInOutSine',
-		delay: anime.stagger(BACK_ELEMENTS_DELAY),
-		autoplay: false,
-		complete: () => { console.log("CIRCLE DONE"); }
-		});
-	// определение анимации квадратного паттерна
-	backRect = anime({
-		targets: '.rect-svg .rect',
-		rotateY: 360 * 3,
-		duration: animPageLength * PATTERN_SPEED,
-		easing: 'easeInOutSine',
-		delay: anime.stagger(BACK_ELEMENTS_DELAY),
-		autoplay: false,
-		complete: () => { console.log("RECT DONE"); }
 	});
 });
 
@@ -524,153 +485,6 @@ const animationElementsSetup = () => {
 
 	screenFlag = windowWidth > MOBILE_BREAKPOINT ? 'desktop' : 'mobile';
 
-	backCirlceAnime = anime({
-		targets: '.circle-pattern',
-		translateX: [
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[0]),
-				duration: heightStartBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[1]),
-				duration: heightWedoBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[2]),
-				duration: heightPerfBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[3]),
-				duration: heightStratBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateX[4]),
-				duration: heightTeamBlock
-			},
-		],
-		translateY: [
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[0]),
-				duration: heightStartBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[1]),
-				duration: heightWedoBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[2]),
-				duration: heightPerfBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[3]),
-				duration: heightStratBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersCircle[screenFlag].translateY[4]),
-				duration: heightTeamBlock
-			},
-		],
-		rotate: [
-			//defaine start rotation in first place
-			{
-				value: -90,
-				duration: 0
-			},
-			{
-				value: backPatternNumbersCircle[screenFlag].rotate[0],
-				duration: heightStartBlock
-			},
-			{
-				value: backPatternNumbersCircle[screenFlag].rotate[1],
-				duration: heightWedoBlock
-			},
-			{
-				value: backPatternNumbersCircle[screenFlag].rotate[2],
-				duration: heightPerfBlock
-			},
-			{
-				value: backPatternNumbersCircle[screenFlag].rotate[3],
-				duration: heightStratBlock
-			},
-			{
-				value: backPatternNumbersCircle[screenFlag].rotate[4],
-				duration: heightTeamBlock
-			},
-		],
-		easing: 'linear',
-		autoplay: false
-	});
-	backRectAnime = anime({
-		targets: '.rect-pattern',
-		translateX: [
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[0]),
-				duration: heightStartBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[1]),
-				duration: heightWedoBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[2]),
-				duration: heightPerfBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[3]),
-				duration: heightStratBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateX[4]),
-				duration: heightTeamBlock
-			},
-		],
-		translateY: [
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[0]),
-				duration: heightStartBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[1]),
-				duration: heightWedoBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[2]),
-				duration: heightPerfBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[3]),
-				duration: heightStratBlock
-			},
-			{
-				value: pxToPx(backPatternNumbersRect[screenFlag].translateY[4]),
-				duration: heightTeamBlock
-			},
-		],
-		rotate: [
-			{
-				value: backPatternNumbersRect[screenFlag].rotate[0],
-				duration: heightStartBlock
-			},
-			{
-				value: backPatternNumbersRect[screenFlag].rotate[1],
-				duration: heightWedoBlock
-			},
-			{
-				value: backPatternNumbersRect[screenFlag].rotate[2],
-				duration: heightPerfBlock
-			},
-			{
-				value: backPatternNumbersRect[screenFlag].rotate[3],
-				duration: heightStratBlock
-			},
-			{
-				value: backPatternNumbersRect[screenFlag].rotate[4],
-				duration: heightTeamBlock
-			},
-		],
-		easing: 'linear',
-		autoplay: false
-	});
 	//wedo graph animation
 	let wedoTargets = screenFlag == 'desktop' ? '.wedo-graph-svg .bar' : '.wedo-graph-svg .bar-mobile';
 	let wedoGraph = anime({
@@ -733,11 +547,6 @@ const animationScroll = () => {
 		for (let i = 0; i < commonElAnime.length; i++) {
 			commonElAnime[i].anime.seek(windowScrollAmount - commonElAnime[i].offsetY);
 		}
-		//back pattern element animation on scroll
-		backCir.seek(windowScrollAmount*PATTERN_SPEED);
-		backRect.seek(windowScrollAmount*PATTERN_SPEED);
-		backCirlceAnime.seek(windowScrollAmount);
-		backRectAnime.seek(windowScrollAmount);
 	}
 }
 //scramble title
