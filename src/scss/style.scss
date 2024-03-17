@@ -1415,7 +1415,7 @@ a{
 		transform: translate(-50%,-50%);
 		width: 100%;
 		@include mobile-breakpoint{
-			transform: translate(-50%,-50%) rotate(90deg);
+			transform: translate(-50%,-50%) rotate(-90deg);
 			width: auto;
 			height: 100%;
 		}
