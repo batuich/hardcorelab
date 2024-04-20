@@ -61,7 +61,7 @@ const chars = [
 let iconPerfomanceAnim;
 
 //background
-//const videoBack = document.querySelector('#back');
+const videoBack = document.querySelector('#back');
 
 // looking for scroll
 window.addEventListener("scroll", () => {
@@ -79,6 +79,8 @@ window.addEventListener("resize", () => {
 
 // waiting for DOM loaded
 document.addEventListener('DOMContentLoaded', () => {
+	// tring to turn off controls for mobile screen
+	if(videoBack.controls) videoBack.controls = false;
 	// scramble texts
 	setTimeout(scrambleTitleTextFun, 500);
 	scrambleTitleTextFlag = true;
